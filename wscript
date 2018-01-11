@@ -29,13 +29,8 @@ def configure(conf):
     else:
         conf.env.append_unique('CXXFLAGS', ['-O2','-funroll-loops','-std=c++0x','-g'])
 
-	if sys.maxint >= 9223372036854775807:
-		print "detected 64 bit architecture, enabling -fPIC"
-        	conf.env.append_unique('CXXFLAGS', ['-fPIC','-fpermissive','-finline-functions'])
-
     if not autowaf.is_child():
         autowaf.check_pkg(conf, 'lv2', uselib_store='LV2CORE')
-        autowaf.check_pkg(conf, 'gtkmm-2.4', uselib_store='GTKMM')
 
     # Set env['pluginlib_PATTERN']
     pat = conf.env['cshlib_PATTERN']
@@ -86,16 +81,6 @@ def build(bld):
               uselib       = 'LV2CORE',
               includes     = includes)
     
-    # Build UI library
-    obj = bld(features     = 'cxx cshlib',
-              env          = penv,
-              source       = 'triceratops_gui.cpp fader_widget.cpp wave_widget.cpp filter_widget.cpp knob_widget.cpp volume_widget.cpp toggle_widget.cpp spacer_widget.cpp presets.cpp widget_button.cpp dco_gui.cpp lfo_gui.cpp adsr_gui.cpp adsr_lfo_gui.cpp amp_gui.cpp echo_gui.cpp reverb_gui.cpp modifier_gui.cpp unison_gui.cpp logo_gui.cpp ',
-              name         = 'triceratops_gui',
-              target       = '%s/triceratops_gui' % bundle,
-              install_path = '${LV2DIR}/%s' % bundle,
-              uselib       = 'LV2CORE GTKMM',
-              includes     = includes)
-
     bld.install_files('${LV2DIR}/triceratops.lv2/', 'minblep.mat')
     bld.install_files('${LV2DIR}/triceratops.lv2/', 'logo.png')
     bld.install_files('${LV2DIR}/triceratops.lv2/', 'triceratops.conf')

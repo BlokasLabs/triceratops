@@ -6,14 +6,6 @@
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 
-# This is a custom extension, which allows us to tag things easily later
-@prefix guiext: <http://lv2plug.in/ns/extensions/ui#>.
-
-<http://nickbailey.co.nr/triceratops/gui>
-a guiext:GtkUI;
-guiext:binary <triceratops_gui.so>;
-guiext:requiredFeature guiext:makeResident.
-
 <http://nickbailey.co.nr/triceratops>
 	a lv2:Plugin ,
 		lv2:InstrumentPlugin ;
@@ -21,9 +13,6 @@ guiext:requiredFeature guiext:makeResident.
 	doap:name "Triceratops" ;
 	doap:license <http://opensource.org/licenses/gpl-3.0> ;
 	lv2:optionalFeature lv2:hardRTCapable ;
-
-# here we say that this plugin has a GUI, and its URI is that
-guiext:ui <http://nickbailey.co.nr/triceratops/gui>;
 
 ######################################################################
 # AUDIO OUT AND MIDI PORTS                                         				  #
