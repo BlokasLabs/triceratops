@@ -85,7 +85,7 @@ def build(bld):
     bld.install_files('${LV2DIR}/triceratops.lv2/', 'logo.png')
     bld.install_files('${LV2DIR}/triceratops.lv2/', 'triceratops.conf')
     bld.install_files('${LV2DIR}/triceratops.lv2/', 'triceratops_categories.txt')
-    bld.install_files('${LV2DIR}/triceratops-presets.lv2', bld.path.ant_glob('presets.lv2/*.*'))
+    bld.install_files('${LV2DIR}/triceratops.lv2', bld.path.ant_glob('presets.lv2/*.*'))
 
 
 
