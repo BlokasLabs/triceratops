@@ -60,6 +60,14 @@ def build(bld):
             install_path = '${LV2DIR}/%s' % bundle,
             LIB_EXT      = bld.env['pluginlib_EXT'])
 
+    bld.install_files('${LV2DIR}/%s' % bundle,
+        bld.path.ant_glob('modgui/**'),
+        cwd=bld.path.find_dir(bundle),
+        relative_trick=True)
+
+    bld.install_files('${LV2DIR}/%s' % bundle, 'modgui.ttl')
+
+
     # Create a build environment that builds module-style library names
     # e.g. triceratops.so instead of libtriceratops.so
     # Note for C++ you must set cxxshlib_PATTERN instead
